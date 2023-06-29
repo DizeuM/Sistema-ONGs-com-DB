@@ -1,0 +1,61 @@
+CREATE DATABASE ong_x;
+
+use ong_x;
+
+CREATE TABLE doadores (
+doadorID INT PRIMARY KEY AUTO_INCREMENT,
+nome varchar(50) NOT NULL,
+cpf varchar(14) UNIQUE NOT NULL,
+email varchar(50) UNIQUE NOT NULL,
+telefone varchar(50) UNIQUE NOT NULL
+);
+
+CREATE TABLE funcionarios (
+funcionarioID INT PRIMARY KEY AUTO_INCREMENT,
+nome varchar(50) NOT NULL,
+senha varchar(50),
+cpf varchar(14) UNIQUE NOT NULL,
+email varchar(50) UNIQUE NOT NULL,
+telefone varchar(50) UNIQUE NOT NULL
+);
+
+CREATE TABLE doacoes (
+doacaoID INT PRIMARY KEY AUTO_INCREMENT,
+doadorID INT NOT NULL,
+valor FLOAT UNSIGNED NOT NULL,
+datadadoacao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+CONSTRAINT doacaoidid FOREIGN KEY(doadorID) REFERENCES doadores(doadorID)
+);
+
+CREATE TABLE despesas(
+despesaID INT PRIMARY KEY auto_increment,
+funcionarioresponsavelID INT NOT NULL,
+descricao varchar(200) NOT NULL,
+valor FLOAT UNSIGNED NOT NULL,
+datadespesa DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+insert into funcionarios (nome, cpf, email, telefone, senha) values
+("Dizeu", "111.111.111-11", "dizeuM@senac.com", "(81) 9999-9999", "wasd"),
+("Rameh", "222.222.222-22", "RamehV@senac.com", "(81) 8888-8888", "1234"),
+("Dark", "777.777.777-77", "darkV@senac.com", "(77) 7777-7777", "DARK");
+
+insert into doadores (nome, cpf, email, telefone) values
+("Dizeu", "111.111.111-11", "dizeuM@senac.com", "(81) 9999-9999"),
+("Rameh", "222.222.222-22", "RamehV@senac.com", "(81) 8888-8888"),
+("Dark", "777.777.777-77", "darkV@senac.com", "(77) 7777-7777"),
+("Andre", "333.333.333-33", "andre@senac.com", "(33) 3333-3333"),
+("Vir", "444.444.444-44", "vir@senac.com", "(99) 4444-4444");
+
+insert into doacoes (doadorID, valor) values
+("1", "20.50"),
+("3", "100"),
+("2", "230"),
+("1", "500"),
+("4", "200"),
+("5", "570");
+
+insert into despesas (funcionarioresponsavelID, descricao, valor) values
+("1", "Comprar agua", "50"),
+("3", "Comprar cesta basica", "573.90"),
+("2", "Pagar boletos", "140.76");
