@@ -224,7 +224,7 @@ def Historicos():
         rows = mycursor.fetchall()
         
         os.system('cls')
-        print("[HISTORICO DE DOACOES]\n")
+        print("[HISTORICO DE RETIRADAS]\n")
         
         linha = 1
         for x in rows[:-11:-1]:
